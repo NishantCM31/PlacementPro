@@ -27,23 +27,23 @@ PlacementPro offers the following features to address these challenges:
 
 ## Team Members
 
-- Member 1: [Nishant] - [Developer]
-- Member 2: [Omkar] - [Developer]
-- Member 3: [Adarsh] - [Developer]
-- Member 4: [Jayesh] - [Developer]
-- Member 5: [Vikesh] - [Developer]
+- Member 1: Nishant - Developer
+- Member 2: Omkar - Developer
+- Member 3: Adarsh - Developer
+- Member 4: Jayesh - Developer
+- Member 5: Vikesh - Developer
 
 ## Getting Started
 
 ### Prerequisites
 
-- [List any prerequisites such as software, tools, or libraries needed]
+- Just your device and a stable internet connection :`)`
 
 ### Installation
 
 1. Clone the repository:
    ```bash
-   https://github.com/NishantCM31/MSC-CA-II-Project.git
+   git clone https://github.com/NishantCM31/MSC-CA-II-Project.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -52,7 +52,30 @@ PlacementPro offers the following features to address these challenges:
 
 ### Usage
 
-- [Instructions on how to use the application]
+To use PlacementPro, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/NishantCM31/MSC-CA-II-Project.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd "MSC-CA-II-Project"
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the application:
+   ```bash
+   npm start
+   ```
+5. Open your web browser and go to `http://localhost:3000`.
+6. Sign in with your credentials or create a new account.
+7. Explore available job opportunities, apply to jobs, and manage your profile.
+8. For administrators, manage student profiles, job postings, and communication channels.
+
+For detailed API documentation or additional features, refer to [documentation link or specific files].
 
 ## Contributing
 
@@ -75,8 +98,8 @@ We welcome contributions to PlacementPro! Please follow these steps to contribut
 
 ## License
 
-[Include license information]
+© 2024 PlacementPro. All rights reserved.
 
 ## Contact
 
-For any questions or feedback, please contact [Your Email].
+For any questions or feedback, please contact [omkarmm11@gmail.com](mailto:omkarmm11@gmail.com).
