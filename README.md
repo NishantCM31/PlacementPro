@@ -27,11 +27,11 @@ PlacementPro offers the following features to address these challenges:
 
 ## Team Members
 
-- Member 1: [Name] - [Role]
-- Member 2: [Name] - [Role]
-- Member 3: [Name] - [Role]
-- Member 4: [Name] - [Role]
-- Member 5: [Name] - [Role]
+- Member 1: [Nishant] - [Developer]
+- Member 2: [Omkar] - [Developer]
+- Member 3: [Adarsh] - [Developer]
+- Member 4: [Jayesh] - [Developer]
+- Member 5: [Vikesh] - [Developer]
 
 ## Getting Started
 
@@ -43,15 +43,11 @@ PlacementPro offers the following features to address these challenges:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/PlacementPro.git
+   https://github.com/NishantCM31/MSC-CA-II-Project.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd PlacementPro
-   ```
-3. Install the required dependencies:
-   ```bash
-   [Insert installation commands]
+   cd "MSC-CA-II-Project"
    ```
 
 ### Usage
