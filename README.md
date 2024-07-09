@@ -43,11 +43,11 @@ PlacementPro offers the following features to address these challenges:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/NishantCM31/MSC-CA-II-Project.git
+   git clone https://github.com/NishantCM31/PlacementPro.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd "MSC-CA-II-Project"
+   cd "PlacementPro"
    ```
 
 ### Usage
