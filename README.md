@@ -37,7 +37,7 @@ PlacementPro offers the following features to address these challenges:
 
 ### Prerequisites
 
-- Just your device and a stable internet connection :`)`
+- Just your device and a stable internet connection :)
 
 ### Installation
 
