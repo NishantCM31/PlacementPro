@@ -43,8 +43,7 @@ PlacementPro is built using the MERN stack:
 - **Nishant** - Developer
 - **Omkar** - Developer
 - **Adarsh** - Developer
-- **Jayesh** - Developer
-- **Vikesh** - Developer
+
 
 ## Getting Started
 
