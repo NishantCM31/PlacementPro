@@ -21,7 +21,6 @@ const AdminJobsTable = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("called");
     const filteredJobs = allAdminJobs.filter((job) => {
       if (!searchJobByText) {
         return true;
@@ -33,50 +32,66 @@ const AdminJobsTable = () => {
     });
     setFilterJobs(filteredJobs);
   }, [allAdminJobs, searchJobByText]);
+
   return (
-    <div>
-      <Table>
-        <TableCaption>A list of your recent posted jobs</TableCaption>
-        <TableHeader>
+    <div className="overflow-x-auto">
+      <Table className="min-w-full bg-white rounded-lg shadow-md">
+        <TableCaption className="p-4 text-lg text-gray-600">
+          A list of your recent posted jobs
+        </TableCaption>
+        <TableHeader className="bg-indigo-100 text-gray-700">
           <TableRow>
-            <TableHead>Company Name</TableHead>
-            <TableHead>Role</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead className="text-right">Action</TableHead>
+            <TableHead className="p-4 font-semibold text-left">
+              Company Name
+            </TableHead>
+            <TableHead className="p-4 font-semibold text-left">Role</TableHead>
+            <TableHead className="p-4 font-semibold text-left">Date</TableHead>
+            <TableHead className="p-4 font-semibold text-right">
+              Action
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filterJobs?.map((job) => (
-            <tr>
-              <TableCell>{job?.company?.name}</TableCell>
-              <TableCell>{job?.title}</TableCell>
-              <TableCell>{job?.createdAt.split("T")[0]}</TableCell>
-              <TableCell className="text-right cursor-pointer">
+          {filterJobs?.map((job, index) => (
+            <TableRow
+              key={index}
+              className="hover:bg-gray-50 transition duration-300"
+            >
+              <TableCell className="p-4 border-b border-gray-200">
+                {job?.company?.name}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200">
+                {job?.title}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200">
+                {job?.createdAt.split("T")[0]}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200 text-right">
                 <Popover>
-                  <PopoverTrigger>
-                    <MoreHorizontal />
+                  <PopoverTrigger className="p-2 rounded-full transition-transform hover:scale-110 focus:outline-none">
+                    <MoreHorizontal className="text-gray-500" />
                   </PopoverTrigger>
-                  <PopoverContent className="w-32">
+                  <PopoverContent className="w-40 p-2 bg-white shadow-lg rounded-lg">
                     <div
                       onClick={() => navigate(`/admin/companies/${job._id}`)}
-                      className="flex items-center gap-2 w-fit cursor-pointer"
+                      className="flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100"
                     >
-                      <Edit2 className="w-4" />
-                      <span>Edit</span>
+                      <Edit2 className="w-4 text-blue-600" />
+                      <span className="text-gray-700">Edit</span>
                     </div>
                     <div
                       onClick={() =>
                         navigate(`/admin/jobs/${job._id}/applicants`)
                       }
-                      className="flex items-center w-fit gap-2 cursor-pointer mt-2"
+                      className="flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 mt-2"
                     >
-                      <Eye className="w-4" />
-                      <span>Applicants</span>
+                      <Eye className="w-4 text-green-600" />
+                      <span className="text-gray-700">Applicants</span>
                     </div>
                   </PopoverContent>
                 </Popover>
               </TableCell>
-            </tr>
+            </TableRow>
           ))}
         </TableBody>
       </Table>

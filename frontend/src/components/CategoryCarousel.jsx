@@ -9,37 +9,57 @@ import {
 import { Button } from "./ui/button";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setSearchedQuery } from "@/redux/jobSlice";
+import { setSearchedQuery } from "@/redux/jobSlice"; // Ensure correct import path for jobSlice
+import { motion } from "framer-motion";
 
+// Categories list for carousel
 const category = [
+  // "Frontend Developer",
+  // "Backend Developer",
+  // "Data Science",
+  // "Graphic Designer",
+  // "FullStack Developer",
+  "Full Stack Developer",
+  "Engineer",
+  "Analyst",
+  "Consultant",
   "Frontend Developer",
   "Backend Developer",
-  "Data Science",
-  "Graphic Designer",
-  "FullStack Developer",
 ];
 
 const CategoryCarousel = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // Handler to set the search query and navigate to the browse page
   const searchJobHandler = (query) => {
-    dispatch(setSearchedQuery(query));
-    navigate("/browse");
+    dispatch(setSearchedQuery(query)); // Set the searched query in Redux
+    navigate("/browse"); // Navigate to the browse page
   };
 
   return (
-    <div>
-      <Carousel className="w-full max-w-xl mx-auto my-20">
+    <div className="my-20">
+      <h2 className="text-4xl font-bold text-center mb-8 text-[#2C3E50]">
+        Explore Job Categories
+      </h2>
+      <Carousel className="w-full max-w-3xl mx-auto">
         <CarouselContent>
           {category.map((cat, index) => (
-            <CarouselItem className="md:basis-1/2 lg-basis-1/3">
-              <Button
-                onClick={() => searchJobHandler(cat)}
-                variant="outline"
-                className="rounded-full"
+            <CarouselItem key={index} className="flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex justify-center"
               >
-                {cat}
-              </Button>
+                <Button
+                  onClick={() => searchJobHandler(cat)} // Handle category search
+                  variant="outline"
+                  className="rounded-full px-6 py-3 text-[#8e44ad] border-[#8e44ad] hover:bg-[#8e44ad] hover:text-white transition-all duration-300"
+                >
+                  {cat}
+                </Button>
+              </motion.div>
             </CarouselItem>
           ))}
         </CarouselContent>

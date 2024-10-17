@@ -169,3 +169,29 @@ export const updateProfile = async (req, res) => {
         console.log(error);
     }
 }
+
+export const getAllStudents = async (req, res) => {
+    try {
+        // Fetch all users with the role of "student"
+        const students = await User.find({ role: 'student' });
+
+        if (!students.length) {
+            return res.status(404).json({
+                message: "No students found.",
+                success: false
+            });
+        }
+
+        return res.status(200).json({
+            message: "Students retrieved successfully.",
+            students,
+            success: true
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Something went wrong.",
+            success: false
+        });
+    }
+};
