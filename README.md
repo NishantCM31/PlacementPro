@@ -43,8 +43,7 @@ PlacementPro is built using the MERN stack:
 - **Nishant** - Developer
 - **Omkar** - Developer
 - **Adarsh** - Developer
-- **Jayesh** - Developer
-- **Vikesh** - Developer
+
 
 ## Getting Started
 
@@ -141,4 +140,4 @@ We welcome contributions to PlacementPro! Please follow these steps to contribut
 
 ## Contact
 
-For any questions or feedback, please contact [omkarmm11@gmail.com](mailto:omkarmm11@gmail.com).
+For any questions or feedback, please contact [omkarmm11@gmail.com](mailto:omkarmm11@gmail.com) [nishantcm31@gmail.com](mailto:nishantcm31@gmail.com).
