@@ -79,77 +79,111 @@ const CompanySetup = () => {
   }, [singleCompany]);
 
   return (
-    <div>
+    <div className="bg-gray-50 min-h-screen">
       <Navbar />
-      <div className="max-w-xl mx-auto my-10">
+      <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
+        <div className="flex items-center gap-5 mb-6">
+          <Button
+            onClick={() => navigate("/admin/companies")}
+            variant="outline"
+            className="border-gray-400 text-gray-700 hover:bg-gray-200 transition duration-300 flex items-center gap-2"
+          >
+            <ArrowLeft />
+            <span>Back</span>
+          </Button>
+          <h1 className="font-bold text-2xl text-gray-800">Company Setup</h1>
+        </div>
+
         <form onSubmit={submitHandler}>
-          <div className="flex items-center gap-5 p-8">
-            <Button
-              onClick={() => navigate("/admin/companies")}
-              variant="outline"
-              className="flex items-center gap-2 text-gray-500 font-semibold"
-            >
-              <ArrowLeft />
-              <span>Back</span>
-            </Button>
-            <h1 className="font-bold text-xl">Company Setup</h1>
-          </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label>Company Name</Label>
+              <Label htmlFor="name" className="font-semibold">
+                Company Name
+              </Label>
               <Input
+                id="name"
                 type="text"
                 name="name"
+                placeholder="Enter company name"
                 value={input.name}
                 onChange={changeEventHandler}
+                className="my-2"
               />
             </div>
             <div>
-              <Label>Description</Label>
+              <Label htmlFor="description" className="font-semibold">
+                Description
+              </Label>
               <Input
+                id="description"
                 type="text"
                 name="description"
+                placeholder="Enter company description"
                 value={input.description}
                 onChange={changeEventHandler}
+                className="my-2"
               />
             </div>
             <div>
-              <Label>Website</Label>
+              <Label htmlFor="website" className="font-semibold">
+                Website
+              </Label>
               <Input
+                id="website"
                 type="text"
                 name="website"
+                placeholder="https://www.example.com"
                 value={input.website}
                 onChange={changeEventHandler}
+                className="my-2"
               />
             </div>
             <div>
-              <Label>Location</Label>
+              <Label htmlFor="location" className="font-semibold">
+                Location
+              </Label>
               <Input
+                id="location"
                 type="text"
                 name="location"
+                placeholder="Enter company location"
                 value={input.location}
                 onChange={changeEventHandler}
+                className="my-2"
               />
             </div>
             <div>
-              <Label>Logo</Label>
+              <Label htmlFor="file" className="font-semibold">
+                Logo
+              </Label>
               <Input
+                id="file"
                 type="file"
                 accept="image/*"
                 onChange={changeFileHandler}
+                className="my-2"
               />
             </div>
           </div>
-          {loading ? (
-            <Button className="w-full my-4">
-              {" "}
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait{" "}
-            </Button>
-          ) : (
-            <Button type="submit" className="w-full my-4">
-              Update
-            </Button>
-          )}
+
+          <div className="flex items-center gap-2 my-6">
+            {loading ? (
+              <Button
+                className="w-full bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300"
+                disabled
+              >
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Please wait
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                className="w-full bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300"
+              >
+                Update
+              </Button>
+            )}
+          </div>
         </form>
       </div>
     </div>

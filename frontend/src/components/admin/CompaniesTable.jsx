@@ -20,6 +20,7 @@ const CompaniesTable = () => {
   );
   const [filterCompany, setFilterCompany] = useState(companies);
   const navigate = useNavigate();
+
   useEffect(() => {
     const filteredCompany =
       companies.length >= 0 &&
@@ -33,47 +34,59 @@ const CompaniesTable = () => {
       });
     setFilterCompany(filteredCompany);
   }, [companies, searchCompanyByText]);
+
   return (
-    <div>
-      <Table>
-        <TableCaption>A list of your recent registered companies</TableCaption>
-        <TableHeader>
+    <div className="overflow-x-auto">
+      <Table className="min-w-full bg-white rounded-lg shadow-md">
+        <TableCaption className="p-4 text-lg text-gray-600">
+          A list of your recent registered companies
+        </TableCaption>
+        <TableHeader className="bg-indigo-100 text-gray-700">
           <TableRow>
-            <TableHead>Logo</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead className="text-right">Action</TableHead>
+            <TableHead className="p-4 font-semibold text-left">Logo</TableHead>
+            <TableHead className="p-4 font-semibold text-left">Name</TableHead>
+            <TableHead className="p-4 font-semibold text-left">Date</TableHead>
+            <TableHead className="p-4 font-semibold text-right">
+              Action
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filterCompany?.map((company) => (
-            <tr>
-              <TableCell>
+          {filterCompany?.map((company, index) => (
+            <TableRow
+              key={index}
+              className="hover:bg-gray-50 transition duration-300"
+            >
+              <TableCell className="p-4 border-b border-gray-200">
                 <Avatar>
                   <AvatarImage src={company.logo} />
                 </Avatar>
               </TableCell>
-              <TableCell>{company.name}</TableCell>
-              <TableCell>{company.createdAt.split("T")[0]}</TableCell>
-              <TableCell className="text-right cursor-pointer">
+              <TableCell className="p-4 border-b border-gray-200">
+                {company.name}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200">
+                {company.createdAt.split("T")[0]}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200 text-right">
                 <Popover>
-                  <PopoverTrigger>
-                    <MoreHorizontal />
+                  <PopoverTrigger className="p-2 rounded-full transition-transform hover:scale-110 focus:outline-none">
+                    <MoreHorizontal className="text-gray-500" />
                   </PopoverTrigger>
-                  <PopoverContent className="w-32">
+                  <PopoverContent className="w-32 p-2 bg-white shadow-lg rounded-lg">
                     <div
                       onClick={() =>
                         navigate(`/admin/companies/${company._id}`)
                       }
-                      className="flex items-center gap-2 w-fit cursor-pointer"
+                      className="flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100"
                     >
-                      <Edit2 className="w-4" />
-                      <span>Edit</span>
+                      <Edit2 className="w-4 text-blue-600" />
+                      <span className="text-gray-700">Edit</span>
                     </div>
                   </PopoverContent>
                 </Popover>
               </TableCell>
-            </tr>
+            </TableRow>
           ))}
         </TableBody>
       </Table>

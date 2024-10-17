@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react";
+import Footer from "../shared/Footer";
 
 const Signup = () => {
   const [input, setInput] = useState({
@@ -66,55 +67,65 @@ const Signup = () => {
       navigate("/");
     }
   }, []);
+
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center mx-auto max-w-7xl">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#E6EEF3] to-[#06232c]">
         <form
           onSubmit={submitHandler}
-          className="w-1/2 p-4 my-10 border border-gray-200 rounded-md"
+          className="w-2/5 p-8 my-10 bg-white border shadow-lg bg-opacity-20 border-white/30 rounded-xl backdrop-blur-lg"
         >
-          <h1 className="mb-5 text-xl font-bold">Sign Up</h1>
-          <div className="my-2">
-            <Label>Full Name</Label>
+          <h1 className="mb-5 text-xl font-bold text-white">Sign Up</h1>
+
+          <div className="my-4">
+            <Label className="text-white">Full Name</Label>
             <Input
               type="text"
               value={input.fullname}
               name="fullname"
               onChange={changeEventHandler}
-              placeholder="Name"
+              placeholder="Enter Name"
+              className="w-full mt-1"
             />
           </div>
-          <div className="my-2">
-            <Label>Email</Label>
+
+          <div className="my-4">
+            <Label className="text-white">Email</Label>
             <Input
               type="email"
               value={input.email}
               name="email"
               onChange={changeEventHandler}
-              placeholder="xyz@gmail.com"
+              placeholder="Enter Email"
+              className="w-full mt-1"
             />
           </div>
-          <div className="my-2">
-            <Label>Phone Number</Label>
+
+          <div className="my-4">
+            <Label className="text-white">Phone Number</Label>
             <Input
               type="text"
               value={input.phoneNumber}
               name="phoneNumber"
               onChange={changeEventHandler}
-              placeholder="8080808080"
+              placeholder="Enter Phone Number"
+              className="w-full mt-1"
             />
           </div>
-          <div className="my-2">
-            <Label>Password</Label>
+
+          <div className="my-4">
+            <Label className="text-white">Password</Label>
             <Input
               type="password"
               value={input.password}
               name="password"
               onChange={changeEventHandler}
-              placeholder="xyz@gmail.com"
+              placeholder="Enter Password"
+              className="w-full mt-1"
             />
           </div>
+
           <div className="flex items-center justify-between">
             <RadioGroup className="flex items-center gap-4 my-5">
               <div className="flex items-center space-x-2">
@@ -126,7 +137,9 @@ const Signup = () => {
                   onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
-                <Label htmlFor="r1">Student</Label>
+                <Label htmlFor="r1" className="text-white">
+                  Student
+                </Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Input
@@ -137,11 +150,13 @@ const Signup = () => {
                   onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
-                <Label htmlFor="r2">Recruiter</Label>
+                <Label htmlFor="r2" className="text-white">
+                  Recruiter
+                </Label>
               </div>
             </RadioGroup>
             <div className="flex items-center gap-2">
-              <Label>Profile</Label>
+              <Label className="text-white">Profile</Label>
               <Input
                 accept="image/*"
                 type="file"
@@ -150,24 +165,26 @@ const Signup = () => {
               />
             </div>
           </div>
+
           {loading ? (
             <Button className="w-full my-4">
-              {" "}
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Please wait{" "}
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Please wait
             </Button>
           ) : (
             <Button type="submit" className="w-full my-4">
               Signup
             </Button>
           )}
-          <span className="text-sm">
+
+          <span className="text-sm text-white">
             Already have an account?{" "}
-            <Link to="/login" className="text-blue-600">
+            <Link to="/login" className="text-blue-400 underline">
               Login
             </Link>
           </span>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

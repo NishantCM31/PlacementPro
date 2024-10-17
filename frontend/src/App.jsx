@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Jobs from "./components/Jobs";
 import Browse from "./components/Browse";
 import Profile from "./components/Profile";
+import AppliedJobs from "./components/AppliedJobs";
 import JobDescription from "./components/JobDescription";
 import Companies from "./components/admin/Companies";
 import CompanyCreate from "./components/admin/CompanyCreate";
@@ -13,6 +14,10 @@ import CompanySetup from "./components/admin/CompanySetup";
 import AdminJobs from "./components/admin/AdminJobs";
 import PostJob from "./components/admin/PostJob";
 import Applicants from "./components/admin/Applicants";
+import Students from "./components/admin/Students"; // Students list component
+import ForgotPassword from "./components/auth/forgotPassword";
+import Policies from "./components/Policies";
+
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 const appRouter = createBrowserRouter([
@@ -29,6 +34,10 @@ const appRouter = createBrowserRouter([
     element: <Signup />,
   },
   {
+    path: "/forgotPassword",
+    element: <ForgotPassword />,
+  },
+  {
     path: "/jobs",
     element: <Jobs />,
   },
@@ -37,14 +46,22 @@ const appRouter = createBrowserRouter([
     element: <JobDescription />,
   },
   {
+    path: "/AppliedJobs",
+    element: <AppliedJobs />,
+  },
+  {
     path: "/browse",
     element: <Browse />,
+  },
+  {
+    path: "/policies",
+    element: <Policies />,
   },
   {
     path: "/profile",
     element: <Profile />,
   },
-  // admin ke liye yha se start hoga
+  // Admin routes start here
   {
     path: "/admin/companies",
     element: (
@@ -93,7 +110,17 @@ const appRouter = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  // Student management routes
+  {
+    path: "/admin/students",
+    element: (
+      <ProtectedRoute>
+        <Students /> {/* Component to show the student list */}
+      </ProtectedRoute>
+    ),
+  },
 ]);
+
 function App() {
   return (
     <div>

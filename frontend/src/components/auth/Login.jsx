@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, setUser } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react";
+import Footer from "../shared/Footer";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -48,43 +49,49 @@ const Login = () => {
       dispatch(setLoading(false));
     }
   };
+
   useEffect(() => {
     if (user) {
       navigate("/");
     }
-  }, []);
+  }, [user, navigate]);
+
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center mx-auto max-w-7xl">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#E6EEF3] to-[#1d3c46]">
         <form
           onSubmit={submitHandler}
-          className="w-1/2 p-4 my-10 border border-gray-200 rounded-md"
+          className="w-full max-w-md p-8 my-10 bg-white border shadow-lg bg-opacity-20 border-white/30 rounded-xl backdrop-blur-lg"
         >
-          <h1 className="mb-5 text-xl font-bold">Login</h1>
-          <div className="my-2">
-            <Label>Email</Label>
+          <h1 className="mb-5 text-xl font-bold text-white">Login</h1>
+
+          <div className="my-4">
+            <Label className="text-white">Email</Label>
             <Input
               type="email"
               value={input.email}
               name="email"
               onChange={changeEventHandler}
-              placeholder="xyz@gmail.com"
+              placeholder="Enter email"
+              className="w-full mt-1"
             />
           </div>
 
-          <div className="my-2">
-            <Label>Password</Label>
+          <div className="my-4">
+            <Label className="text-white">Password</Label>
             <Input
               type="password"
               value={input.password}
               name="password"
               onChange={changeEventHandler}
-              placeholder="xyz@gmail.com"
+              placeholder="Enter Password"
+              className="w-full mt-1"
             />
           </div>
-          <div className="flex items-center justify-between">
-            <RadioGroup className="flex items-center gap-4 my-5">
+
+          <div className="flex items-center justify-between my-4">
+            <RadioGroup className="flex items-center gap-4">
               <div className="flex items-center space-x-2">
                 <Input
                   type="radio"
@@ -94,7 +101,9 @@ const Login = () => {
                   onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
-                <Label htmlFor="r1">Student</Label>
+                <Label htmlFor="r1" className="text-white">
+                  Student
+                </Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Input
@@ -105,28 +114,38 @@ const Login = () => {
                   onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
-                <Label htmlFor="r2">Recruiter</Label>
+                <Label htmlFor="r2" className="text-white">
+                  Recruiter
+                </Label>
               </div>
             </RadioGroup>
           </div>
+
           {loading ? (
             <Button className="w-full my-4">
-              {" "}
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Please wait{" "}
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Please wait
             </Button>
           ) : (
             <Button type="submit" className="w-full my-4">
               Login
             </Button>
           )}
-          <span className="text-sm">
+
+          <span className="text-sm text-white">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-blue-600">
+            <Link to="/signup" className="text-black underline">
               Signup
             </Link>
           </span>
+
+          <div className="my-4">
+            <Link to="/forgotPassword" className="text-black underline text-sm">
+              Forgot Password?
+            </Link>
+          </div>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };

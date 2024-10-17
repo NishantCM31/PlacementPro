@@ -9,26 +9,22 @@ import {
   TableRow,
 } from "../ui/table";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, Check, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 import { APPLICATION_API_END_POINT } from "@/utils/constant";
 import axios from "axios";
 
-const shortlistingStatus = ["Accepted", "Rejected"];
-
 const ApplicantsTable = () => {
   const { applicants } = useSelector((store) => store.application);
 
   const statusHandler = async (status, id) => {
-    console.log("called");
     try {
       axios.defaults.withCredentials = true;
       const res = await axios.post(
         `${APPLICATION_API_END_POINT}/status/${id}/update`,
         { status }
       );
-      console.log(res);
       if (res.data.success) {
         toast.success(res.data.message);
       }
@@ -38,63 +34,86 @@ const ApplicantsTable = () => {
   };
 
   return (
-    <div>
-      <Table>
-        <TableCaption>A list of your recent applied user</TableCaption>
-        <TableHeader>
+    <div className="overflow-x-auto">
+      <Table className="min-w-full bg-white rounded-lg shadow-md">
+        <TableCaption className="p-4 text-lg text-gray-600">
+          A list of your recent applied users
+        </TableCaption>
+        <TableHeader className="bg-indigo-100 text-gray-700">
           <TableRow>
-            <TableHead>FullName</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Contact</TableHead>
-            <TableHead>Resume</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead className="text-right">Action</TableHead>
+            <TableHead className="p-4 font-semibold text-left">
+              FullName
+            </TableHead>
+            <TableHead className="p-4 font-semibold text-left">Email</TableHead>
+            <TableHead className="p-4 font-semibold text-left">
+              Contact
+            </TableHead>
+            <TableHead className="p-4 font-semibold text-left">
+              Resume
+            </TableHead>
+            <TableHead className="p-4 font-semibold text-left">Date</TableHead>
+            <TableHead className="p-4 font-semibold text-right">
+              Action
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {applicants &&
-            applicants?.applications?.map((item) => (
-              <tr key={item._id}>
-                <TableCell>{item?.applicant?.fullname}</TableCell>
-                <TableCell>{item?.applicant?.email}</TableCell>
-                <TableCell>{item?.applicant?.phoneNumber}</TableCell>
-                <TableCell>
-                  {item.applicant?.profile?.resume ? (
-                    <a
-                      className="text-blue-600 cursor-pointer"
-                      href={item?.applicant?.profile?.resume}
-                      target="_blank"
-                      rel="noopener noreferrer"
+          {applicants?.applications?.map((item, index) => (
+            <TableRow
+              key={index}
+              className="hover:bg-gray-50 transition duration-300"
+            >
+              <TableCell className="p-4 border-b border-gray-200">
+                {item?.applicant?.fullname}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200">
+                {item?.applicant?.email}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200">
+                {item?.applicant?.phoneNumber}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200">
+                {item.applicant?.profile?.resume ? (
+                  <a
+                    className="text-blue-600 cursor-pointer"
+                    href={item?.applicant?.profile?.resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {item?.applicant?.profile?.resumeOriginalName}
+                  </a>
+                ) : (
+                  <span>NA</span>
+                )}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200">
+                {item?.applicant.createdAt.split("T")[0]}
+              </TableCell>
+              <TableCell className="p-4 border-b border-gray-200 text-right">
+                <Popover>
+                  <PopoverTrigger className="p-2 rounded-full transition-transform hover:scale-110 focus:outline-none">
+                    <MoreHorizontal className="text-gray-500" />
+                  </PopoverTrigger>
+                  <PopoverContent className="w-40 p-2 bg-white shadow-lg rounded-lg">
+                    <div
+                      onClick={() => statusHandler("Accepted", item?._id)}
+                      className="flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100"
                     >
-                      {item?.applicant?.profile?.resumeOriginalName}
-                    </a>
-                  ) : (
-                    <span>NA</span>
-                  )}
-                </TableCell>
-                <TableCell>{item?.applicant.createdAt.split("T")[0]}</TableCell>
-                <TableCell className="float-right cursor-pointer">
-                  <Popover>
-                    <PopoverTrigger>
-                      <MoreHorizontal />
-                    </PopoverTrigger>
-                    <PopoverContent className="w-32">
-                      {shortlistingStatus.map((status, index) => {
-                        return (
-                          <div
-                            onClick={() => statusHandler(status, item?._id)}
-                            key={index}
-                            className="flex w-fit items-center my-2 cursor-pointer"
-                          >
-                            <span>{status}</span>
-                          </div>
-                        );
-                      })}
-                    </PopoverContent>
-                  </Popover>
-                </TableCell>
-              </tr>
-            ))}
+                      <Check className="w-4 text-green-600" />
+                      <span className="text-gray-700">Accepted</span>
+                    </div>
+                    <div
+                      onClick={() => statusHandler("Rejected", item?._id)}
+                      className="flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-gray-100 mt-2"
+                    >
+                      <X className="w-4 text-red-600" />
+                      <span className="text-gray-700">Rejected</span>
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>
